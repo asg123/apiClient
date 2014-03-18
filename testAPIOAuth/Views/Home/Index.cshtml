@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!--<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+</p>-->
+
+@if(ViewBag.ErrorText!=null && ViewBag.ErrorText!=string.Empty){
+    <h2>Error: @ViewBag.ErrorText</h2>
+}
+     
+@if(ViewBag.Devices!=null) {
+    <h2>Devices:</h2>
+    <table>
+    <tr>
+        <td>id</td>
+        <td>duration</td>
+        <td>type</td>
+        <td>date</td>
+        <td>channel</td>
+    </tr>
+    @foreach (var d in ViewBag.Devices)
+    {
+        <tr>
+            <td>@d.id</td>
+            <td>@d.duration</td>
+            <td>@d.type</td>
+            <td>@d.date</td>
+            <td>@d.channel</td>
+        </tr>
+    }
+    </table>
+    <iframe src="https://apifree.ntrglobal.com/users.xml">Users</iframe>
+}
