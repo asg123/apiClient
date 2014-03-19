@@ -24,8 +24,8 @@ namespace testAPIOAuth.Controllers
                     var token = id.Ticket.UserData;
                     // vamos a probar
                     var api = ApiClient.GetConsumer();
-                    var ret = ApiClient.Call<ChatList>(ApiClient.GetChatsEndpoint, api, token);
-
+                    //var ret = ApiClient.Call<ChatList>(ApiClient.GetChatsEndpoint, api, token);
+                    var ret = ApiClient.Call<ChatList>(ApiClient.GetChatsEndpoint);
                     ViewBag.Devices = ret.chats.ToArray();
                 }
                 catch (Exception ex)

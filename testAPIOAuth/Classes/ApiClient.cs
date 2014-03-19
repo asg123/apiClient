@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web;
@@ -17,7 +18,7 @@ namespace testAPIOAuth.Classes
     {
 
         // api
-        static readonly InMemoryTokenManager TokenManager = new InMemoryTokenManager("consumerKey", "consumerSecret");
+        static readonly InMemoryTokenManager TokenManager = new InMemoryTokenManager("YfELwIRG5a7XNggTHA", "NIegsW8GQzX5FgMYFEnsE1zn8DgGXhomoIs7aYox");
 
         public static WebConsumer GetConsumer()
         {
@@ -45,6 +46,16 @@ namespace testAPIOAuth.Classes
             var response = api.PrepareAuthorizedRequestAndSend(endpoint, accessToken);
             var contents = response.GetResponseReader().ReadToEnd();
             return JsonConvert.DeserializeObject<T>(contents);
+        }
+
+        public static T Call<T>(MessageReceivingEndpoint endpoint)
+        {
+            using (var wc = new WebClient())
+            {
+                wc.Credentials = new NetworkCredential("bmegias@ntrglobal.com", "123123123");
+                var ret = wc.DownloadString(endpoint.Location);
+                return JsonConvert.DeserializeObject<T>(ret);
+            }
         }
     }
 }
