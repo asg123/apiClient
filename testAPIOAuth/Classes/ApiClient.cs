@@ -18,7 +18,7 @@ namespace testAPIOAuth.Classes
     {
 
         // api
-        static readonly InMemoryTokenManager TokenManager = new InMemoryTokenManager("YfELwIRG5a7XNggTHA", "NIegsW8GQzX5FgMYFEnsE1zn8DgGXhomoIs7aYox");
+        static readonly InMemoryTokenManager TokenManager = new InMemoryTokenManager("consumerKey", "condumerSecret");
 
         public static WebConsumer GetConsumer()
         {
@@ -52,7 +52,7 @@ namespace testAPIOAuth.Classes
         {
             using (var wc = new WebClient())
             {
-                wc.Credentials = new NetworkCredential("bmegias@ntrglobal.com", "123123123");
+                wc.Credentials = new NetworkCredential("NTRclouduser", "NTRcloudpassword");
                 var ret = wc.DownloadString(endpoint.Location);
                 return JsonConvert.DeserializeObject<T>(ret);
             }
